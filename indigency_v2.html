@@ -1,0 +1,64 @@
+Title: Utah Indigency Calculator
+Author: Bianca Stella Bruschi & Henri-Justus Schloesser
+Before: <link rel="stylesheet" type="text/css" href="https://suffolklitlab.org/howto/qna/style/style.css">
+<div id="icon" style="background-size: 110px 99px;background-image: url('https://suffolklitlab.org/howto/qna/images/maxheadroom.gif');"></div>
+<h2 style="text-align:center;">Utah Indigency Calculator</h2>
+<p><b>This is a <a href="https://www.codingthelaw.org/level/2/#mission_p2">class project</a>. You should not rely on it as a source of legal information. It is likely incomplete.</b></p>
+<p>Answer the following questions to see if you qualify for an appointment of counsel or fee waiver.</p>
+After:
+<script>
+function fedpov(house,income,percentage){
+	// Determines if your income is less than or equal to
+	// a percentage of the 2021 federal poverty guidelines
+	// for the contiguous United States. See
+	// https://aspe.hhs.gov/poverty-guidelines
+
+		var line = NaN;
+
+		if (house == 1) {
+			line = 13590;
+		} else if (house == 2) {
+			line = 18310;
+		} else if (house == 3) {
+			line = 23030;
+		} else if (house == 4) {
+			line = 27750;
+		} else if (house == 5) {
+			line = 32470;
+		} else if (house == 6) {
+			line = 37190;
+		} else if (house == 7) {
+			line = 41910;
+		} else if (house == 8) {
+			line = 46630;
+		} else if (house > 8) {
+			line = 44660 + (house-8)*4540;
+		}
+
+		if (income <= (line*(percentage/100))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
+Q(o): Disclaimer: this is a class project. You should not rely on it as a source of legal information!
+A: Got it.
+	Q(name):Hello and welcome! I am a digital lawyer trained to verify your eligibility for assigned counsel in the state of Utah. Can you please tell me your name?
+	X:
+		Q(1.1.1): Nice to meet you <x>name</x>!  I am glad to help you today. <br><br> Let’s start off by telling me if you have been charged with a crime that can result in your possible incarceration.
+		A: No.
+			Q(1.1.1.1): I am sorry, but you do not qualify for assigned counsel. You're not risking any possible deprivation of freedom.
+		A: Yes, I risk possible incarceration.
+			Q(1.1.1.2): Are you a minor?
+			A: Yes.
+				Q(1.1.1.2.1): You may qualify for assigned counsel. <br><br> Do you want me to open a new window where you can get more information and discover your rights in court?
+				A[https://www.utcourts.gov/howto/legalassist/#qualify]: Yes.
+			A: No.
+				Q(house): Alright. How many people depend on your annual income, counting yourself?
+				X:number
+					Q(income): What's your annual income?
+					X[javascript:if (fedpov(getvar('house'),getvar('income'),100)){ goto('eligible') } else { goto('ineligible') } ]:number
+Q(ineligible): I am sorry, but you do not qualify for assigned counsel.
+
+Q(eligible): You are eligible for assigned counsel.
