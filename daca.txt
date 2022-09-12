@@ -1,0 +1,56 @@
+Title:
+Author:
+Description:
+
+Title:
+Author:
+Description:
+
+Q(1): Is their birthday on or after June 16, 1981?
+A: No
+	Q(Ineligible):They are ineligible
+A: Yes
+	Q(1.22): Did they enter the United States before your sixteenth birthday?
+	A: No
+		Q(1.2.1):GOTO:ineligible
+	A: Yes
+		Q(1.2.2): Have they continuously resided in the United States since June 15, 2007?
+		A: No.
+			Q(1.2.2.1):GOTO:ineligible
+		A: Yes
+			Q(1.2.2.2): Were they out of status on June 15, 2012?
+			A: No
+				Q(1.2.2.2.1):GOTO:ineligible
+			A: Yes
+				Q(1.2.2.2.2): Have they been convicted of a felony or a significant misdemeanor?
+				A: Yes
+					Q(1.2.2.2.2.1):GOTO:ineligible
+				A: No
+					Q(1.2.2.2.2.2): Have they been convicted of more than one misdemeanor?
+					A: Yes		
+						Q(1.2.2.2.2.2.1):GOTO:ineligible
+					A: No.
+						Q(1.2.2.2.2.2.2): Do they pose a threat to national security or public safety?
+						A: Yes.
+							Q(1.2.2.2.2.2.2.1):GOTO:ineligible
+						A: No.
+							Q(1.2.2.2.2.2.2.2): Are they currently in school?
+							A: Yes.
+								Q(1.2.2.2.2.2.2.2.1): Are they currently in school?
+							A: No.
+								Q(1.2.2.2.2.2.2.2.2): Do they have a HS diploma or GED?
+								A: 	No.
+									Q(1.2.2.2.2.2.2.2.2.1): Wait
+									A: Yes.
+										Q(1.2.2.2.2.2.2.2.2.1.1):GOTO:eligible
+									A: Yes
+										Q(eligible):Eligible.
+									A: No.
+										Q(1.2.2.2.2.2.2.2.2.1.3): Currently in removal proceedings or have a final removal or VD order?
+										A: Yes.
+											Q(1.2.2.2.2.2.2.2.2.1.3.1):GOTO:eligible
+										A: No.
+											Q(wait): Wait
+
+
+
